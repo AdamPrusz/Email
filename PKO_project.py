@@ -65,55 +65,5 @@ label_skarbowy.grid(row = 2, column = 1)
 button_zus.grid(row = 1, column = 0)
 button_skarbowy.grid(row = 2, column = 0)
 
-
-
-
-
-
-
-
-
-#otwieranie nowego okna
-# def open():
-#     top = Toplevel()
-#     top.title("POTWIERDZENIE")
-#     global my_img
-#
-#     if clicked.get() == "ZUS":
-#         my_img = ImageTk.PhotoImage(Image.open(r'C:\Users\adamp\Downloads\Logo_zus.png'))
-#     else:
-#         my_img = ImageTk.PhotoImage(Image.open(r'C:\Users\adamp\Downloads\urzad_skarbowy.jpg'))
-#
-#     myLabel1 = Label(top, image=my_img)
-#     myLabel2 = Label(top, text="Wysłano potwierdzenie do Księgowej!")
-#     myLabel2.config(font =70)
-#
-#     myLabel1.grid(row=0, column=0)
-#     myLabel2.grid(row=1, column=0)
-
-#wybór urzędu
-
-# clicked = StringVar()
-# clicked.set("ZUS")
-#
-# e = Entry(root, width = 50)
-# e.grid(row = 2, column = 1)
-# password = e.get()
-#
-#
-# myLabel3 = Label(root, text = f"Twój plik to: {ffm.confirmation}")
-# myLabel4 = Label(root, text = "Wybierz Urząd")
-# drop = OptionMenu(root, clicked, "ZUS", "Urząd Skarbowy")
-# myLabel5 = Label(root, text = "Wpisz hasło poczty")
-# myButton = Button(root, text = "Wyślij", padx = 40, command = open)
-#
-# myLabel3.grid(row = 0, column = 1, columnspan = 2)
-# myLabel4.grid(row = 1, column = 0)
-# myLabel5.grid(row = 2, column = 0)
-#
-# drop.grid(row = 1, column = 1)
-# myButton.grid(row = 3, column = 1)
-
-
 #działanie programu
 root.mainloop()
