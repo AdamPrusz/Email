@@ -1,8 +1,7 @@
 from tkinter import *
 from PIL import ImageTk, Image
 from tkinter import messagebox
-import attachment_module as attachment
-import find_file_module as find_file
+from Email.working_area import attachment_module as attachment, find_file_module as find_file
 
 root = Tk()
 root.title("POTWIERDZENIE MEGA KAM")
@@ -11,8 +10,8 @@ root.geometry("340x220")
 def popup(send_email):
     response = messagebox.showinfo("Potwierdzenie MEGAKAM", "Gratulacje! Wysłałeś potwierdzenie do księgowej.")
     label_popup = Label(root, text = response)
-    label_popup.pack()
-    return send_email
+    label_popup.grid(row = 0, column = 0)
+    # return send_email
 
 def button_zus_click():
     top = Toplevel()
@@ -30,7 +29,6 @@ def button_zus_click():
     entry_password.grid(row = 1, column = 1)
     button_send.grid(row = 2, column = 0, columnspan = 2, padx = 20, pady = 20)
 
-
 def button_skarbowy_click():
     top = Toplevel()
     top.title("Urząd Skarbowy")
@@ -40,15 +38,15 @@ def button_skarbowy_click():
                         font=('Helvetica', 10, 'bold'), pady=30)
     label_password = Label(top, text="Wpisz hasło do poczty -->")
     entry_password = Entry(top, width=20)
-    button_send = Button(top, text="WYŚLIJ", font='bold', command=lambda: popup(attachment.send_email_skarbowy \
+    try:
+        button_send = Button(top, text="WYŚLIJ", font='bold', command=lambda: popup(attachment.send_email_skarbowy \
                         (entry_password.get(), find_file.file_path)))
+    raise SMTPAuthenticationError(code, resp):
+        print("złe haslo")
     label_first.grid(row=0, column=0, columnspan=2)
     label_password.grid(row=1, column=0)
     entry_password.grid(row=1, column=1)
     button_send.grid(row=2, column=0, columnspan=2, padx=20, pady=20)
-
-
-
 
 zus_img = ImageTk.PhotoImage(Image.open(r'C:\Users\adamp\Downloads\zus.jpg'))
 skarbowy_img = ImageTk.PhotoImage(Image.open(r'C:\Users\adamp\Downloads\urzad_skarbowy.jpg'))
@@ -66,4 +64,6 @@ button_zus.grid(row = 1, column = 0)
 button_skarbowy.grid(row = 2, column = 0)
 
 #działanie programu
+
+# if __name__ == "main":
 root.mainloop()
