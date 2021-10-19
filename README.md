@@ -1,6 +1,6 @@
 ### Email
 
-Code enables user to send the confirmtion to chosen office via e-mail.
+Code enables user to send the confirmtion of payment to an accountant.
 
 ### User's activities
 
