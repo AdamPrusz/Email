@@ -1,91 +1,53 @@
+import os
 import smtplib, ssl
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import find_file_module
+file = find_file_module.file_path
 
-def send_email_zus(user, file):
+class Email:
     subject = "Potwierdzenie ZUS - MEGAKAM"
     body = "Dokument w załączniku \n \n \n Piotr Pruszyński"
-    sender_email = "adamprusz95@gmail.com"
-    receiver_email = "adamprusz95@gmail.com"
-    password = user
 
-    # Create a multipart message and set headers
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = receiver_email
-    message["Subject"] = subject
+    def __init__(self,  password, sender_email = "adamprusz95@gmail.com", receiver_email = "adamprusz95@gmail.com"):
+        self.password = password
+        self.sender_email = sender_email
+        self.receiver_email = receiver_email
 
-    # Add body to email
-    message.attach(MIMEText(body, "plain"))
+    def send_email_zus(self, file):
+        message = MIMEMultipart()
+        message["From"] = self.sender_email
+        message["To"] = self.receiver_email
+        message["Subject"] = self.subject
 
-    # Open PDF file in binary mode
-    with open(file, "rb") as attachment:
-        # Add file as application/octet-stream
-        # Email client can usually download this automatically as attachment
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read())
+        message.attach(MIMEText(self.body, "plain"))
 
-    # Encode file in ASCII characters to send by email
-    encoders.encode_base64(part)
 
-    # Add header as key/value pair to attachment part
-    part.add_header(
-        "Content-Disposition",
-        f"attachment; filename= {file}",
-    )
+        with open(file, "rb") as attachment:
+            part = MIMEBase("application", "octet-stream")
+            part.set_payload(attachment.read())
 
-    # Add attachment to message and convert message to string
-    message.attach(part)
-    text = message.as_string()
 
-    # Log in to server using secure context and send email
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context = context) as server:
-        server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, text)
+        encoders.encode_base64(part)
 
-def send_email_skarbowy(user, file):
-    subject = "Potwierdzenie Urząd Skarbowy - MEGAKAM"
-    body = "Dokument w załączniku \n \n \n Piotr Pruszyński"
-    sender_email = "adamprusz95@gmail.com"
-    receiver_email = "adamprusz95@gmail.com"
-    password = user
+        part.add_header(
+            "Content-Disposition",
+            f"attachment; filename= {file}",
+        )
 
-    # Create a multipart message and set headers
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = receiver_email
-    message["Subject"] = subject
+        message.attach(part)
+        text = message.as_string()
 
-    # Add body to email
-    message.attach(MIMEText(body, "plain"))
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465, context = context) as server:
+            server.login(self.sender_email, self.password)
+            server.sendmail(self.sender_email, self.receiver_email, text)
 
-    # Open PDF file in binary mode
-    with open(file, "rb") as attachment:
-        # Add file as application/octet-stream
-        # Email client can usually download this automatically as attachment
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read())
+mail = Email("eisxssoszjffxhvz")
 
-    # Encode file in ASCII characters to send by email
-    encoders.encode_base64(part)
+mail.send_email_zus(file)
 
-    # Add header as key/value pair to attachment part
-    part.add_header(
-        "Content-Disposition",
-        f"attachment; filename= {file}",
-    )
-
-    # Add attachment to message and convert message to string
-    message.attach(part)
-    text = message.as_string()
-
-    # Log in to server using secure context and send email
-    context = ssl.create_default_context()
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465, context = context) as server:
-        server.login(sender_email, password)
-        server.sendmail(sender_email, receiver_email, text)
 
 

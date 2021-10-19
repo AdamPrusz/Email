@@ -3,6 +3,7 @@ from PIL import ImageTk, Image
 from tkinter import messagebox
 from Email.working_area import attachment_module as attachment, find_file_module as find_file
 
+
 root = Tk()
 root.title("POTWIERDZENIE MEGA KAM")
 root.geometry("340x220")
