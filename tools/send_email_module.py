@@ -45,7 +45,7 @@ class Email:
             server.login(self.sender_email, self.password)
             server.sendmail(self.sender_email, self.receiver_email, text)
 
-mail = Email("eisxssoszjffxhvz")
+mail = Email()
 
 mail.send_email_zus(file)
 
