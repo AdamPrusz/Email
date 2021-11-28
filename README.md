@@ -1,11 +1,12 @@
 ### Email
 
-Code enables user to send the confirmtion to chosen office via e-mail.
+Code enables user to send the payment's confirmtion to an accountant.
 
 ### User's activities
 
 1. Download the payment confirmation from your bank account --> obligatory
 2. Open script
 3. Choose relevant office
-4. Input your email password
-5. Confirm sending the email by clicking "send" button
+4. Choose e-mail recipient
+5. Input your email password
+6. Send the e-mail
