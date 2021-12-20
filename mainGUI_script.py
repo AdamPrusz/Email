@@ -63,19 +63,31 @@ class Start_window:
 
     def new_window_zus(self):
         self.hide()
-        new_window = tk.Toplevel()
-        new_window.title("HASŁO")
-        new_window.geometry("380x280")
-        new_window.resizable(0,0)
-        self.app = Password(new_window, self.filename, self.filepath, self.office1)
+        if self.filename == "":
+            response = messagebox.showerror("BŁĄD", "Nie znaleziono pliku")
+            status_label = tk.Label(text = response)
+            status_label.pack()
+            self.master.destroy()
+        else:
+            new_window = tk.Toplevel()
+            new_window.title("HASŁO")
+            new_window.geometry("380x280")
+            new_window.resizable(0,0)
+            self.app = Password(new_window, self.filename, self.filepath, self.office1)
 
     def new_window_skarbowy(self):
         self.hide()
-        new_window = tk.Toplevel()
-        new_window.title("HASŁO")
-        new_window.geometry("380x280")
-        new_window.resizable(0,0)
-        self.app = Password(new_window, self.filename, self.filepath, self.office2)
+        if self.filename == "":
+            response = messagebox.showerror("BŁĄD", "Nie znaleziono pliku")
+            status_label = tk.Label(text = response)
+            status_label.pack()
+            self.master.destroy()
+        else:
+            new_window = tk.Toplevel()
+            new_window.resizable(0, 0)
+            new_window.geometry("380x280")
+            new_window.title("HASŁO")
+            self.app = Password(new_window, self.filename, self.filepath, self.office2)
 
 
 class Password:
